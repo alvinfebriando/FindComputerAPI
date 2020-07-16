@@ -22,7 +22,7 @@ public class UserController {
 
     @PostMapping
     public void register(@RequestBody User user) {
-        userService.register(user);
+        userService.createUser(user);
     }
 
     @GetMapping(path = "{id}")
