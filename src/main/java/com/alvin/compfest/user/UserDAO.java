@@ -3,11 +3,11 @@ package com.alvin.compfest.user;
 import java.util.UUID;
 
 public interface UserDAO {
-    void insertUser(UUID id, User user);
+    User insertUser(UUID id, User user);
 
-    default void insertUser(User user) {
+    default User insertUser(User user) {
         UUID id = UUID.randomUUID();
-        insertUser(id, user);
+        return insertUser(id, user);
     }
 
     User getUser(UUID id);

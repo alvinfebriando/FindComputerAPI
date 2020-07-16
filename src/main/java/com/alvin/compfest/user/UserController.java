@@ -21,8 +21,8 @@ public class UserController {
     }
 
     @PostMapping
-    public void register(@RequestBody User user) {
-        userService.createUser(user);
+    public User register(@RequestBody User user) {
+        return userService.createUser(user);
     }
 
     @GetMapping(path = "{id}")

@@ -11,8 +11,10 @@ public class ArrayListUserDAO implements UserDAO {
     private static List<User> DB = new ArrayList<User>();
 
     @Override
-    public void insertUser(UUID id, User user) {
-        DB.add(new User(id, user.getName(), user.getUsername(), user.getPassword(), user.getEmail()));
+    public User insertUser(UUID id, User user) {
+        User u = new User(id, user.getName(), user.getUsername(), user.getPassword(), user.getEmail());
+        DB.add(u);
+        return u;
     }
 
     @Override

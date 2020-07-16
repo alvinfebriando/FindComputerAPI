@@ -15,8 +15,8 @@ public class UserService {
         this.userDAO = userDAO;
     }
 
-    public void createUser(User user) {
-        this.userDAO.insertUser(user);
+    public User createUser(User user) {
+        return this.userDAO.insertUser(user);
     }
 
     public User findUser(UUID id) {
