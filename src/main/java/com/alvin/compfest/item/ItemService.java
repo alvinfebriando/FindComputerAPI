@@ -16,8 +16,8 @@ public class ItemService {
         this.itemDAO = itemDAO;
     }
 
-    public void addItem(Item item) {
-        itemDAO.insertItem(item);
+    public Item addItem(Item item) {
+        return itemDAO.insertItem(item);
     }
 
     public void removeItem(UUID id) {

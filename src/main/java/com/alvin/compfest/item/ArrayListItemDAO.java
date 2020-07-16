@@ -12,8 +12,11 @@ public class ArrayListItemDAO implements ItemDAO {
     private List<Item> DB = new ArrayList<Item>();
 
     @Override
-    public void insertItem(UUID id, Item newItem) {
-        DB.add(newItem);
+    public Item insertItem(UUID id, Item newItem) {
+        Item i = new Item(id, newItem.getName(), newItem.getDescription(), newItem.getCategory(), newItem.getPrice(),
+                newItem.getOwner());
+        DB.add(i);
+        return i;
     }
 
     @Override

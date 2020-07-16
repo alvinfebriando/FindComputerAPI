@@ -4,11 +4,11 @@ import java.util.List;
 import java.util.UUID;
 
 public interface ItemDAO {
-    void insertItem(UUID id, Item item);
+    Item insertItem(UUID id, Item item);
 
-    default void insertItem(Item item) {
+    default Item insertItem(Item item) {
         UUID id = UUID.randomUUID();
-        insertItem(id, item);
+        return insertItem(id, item);
     }
 
     void removeItem(UUID id);
