@@ -1,6 +1,7 @@
 package com.alvin.compfest.item;
 
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,12 +22,16 @@ public class ItemController {
     }
 
     @GetMapping
-    public List<Item> getItems(@RequestParam UUID ownerId) {
-        return itemService.searchItemsByOwner(ownerId);
-    }
-
-    public List<Item> getItems(@RequestParam Category category) {
-        return itemService.searchItemsByCategory(category);
+    public List<Item> getItems(@RequestParam Map<String, String> params) {
+        if (params.containsKey("ownerId")) {
+            UUID ownerId = UUID.fromString(params.get("ownerId"));
+            return itemService.searchItemsByOwner(ownerId);
+        } else if (params.containsKey("category")) {
+            Category category = Category.valueOf(params.get("category"));
+            return itemService.searchItemsByCategory(category);
+        } else {
+            return null;
+        }
     }
 
     @GetMapping(path = "{id}")
