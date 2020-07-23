@@ -12,7 +12,7 @@ public class ArrayListUserDAO implements UserDAO {
 
     @Override
     public User insertUser(UUID id, User user) {
-        User u = new User(id, user.getName(), user.getUsername(), user.getPassword(), user.getEmail());
+        User u = new User(id, user.getName(), user.getPassword(), user.getEmail());
         DB.add(u);
         return u;
     }
