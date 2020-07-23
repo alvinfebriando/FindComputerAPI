@@ -37,7 +37,7 @@ public class ArrayListItemDAO implements ItemDAO {
 
     @Override
     public List<Item> getItems(UUID owner) {
-        return DB.stream().filter(item -> item.getOwner().equals(owner)).collect(Collectors.toList());
+        return DB.stream().filter(item -> item.getOwner().getId().equals(owner)).collect(Collectors.toList());
     }
 
     @Override

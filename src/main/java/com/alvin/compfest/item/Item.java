@@ -2,21 +2,23 @@ package com.alvin.compfest.item;
 
 import java.util.UUID;
 
+import com.alvin.compfest.user.User;
+
 public class Item {
     private final UUID id;
     private final String name;
     private final String description;
     private final Category category;
     private final int price;
-    private final UUID ownerId;
+    private final User owner;
 
-    public Item(UUID id, String name, String description, Category category, int price, UUID owner) {
+    public Item(UUID id, String name, String description, Category category, int price, User owner) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.category = category;
         this.price = price;
-        this.ownerId = owner;
+        this.owner = owner;
     }
 
     public UUID getId() {
@@ -39,7 +41,7 @@ public class Item {
         return price;
     }
 
-    public UUID getOwner() {
-        return ownerId;
+    public User getOwner() {
+        return owner;
     }
 }
