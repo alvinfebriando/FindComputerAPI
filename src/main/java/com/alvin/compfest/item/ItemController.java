@@ -4,9 +4,14 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
+import com.alvin.compfest.user.User;
+import com.alvin.compfest.user.UserService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -15,10 +20,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class ItemController {
     private final ItemService itemService;
+    private final UserService userService;
 
     @Autowired
-    public ItemController(ItemService itemService) {
+    public ItemController(ItemService itemService, UserService userService) {
         this.itemService = itemService;
+        this.userService = userService;
     }
 
     @GetMapping
@@ -37,5 +44,13 @@ public class ItemController {
     @GetMapping(path = "{id}")
     public Item getItem(@PathVariable("id") UUID id) {
         return itemService.getItem(id);
+    }
+
+    @PostMapping
+    public Item addItem(@RequestBody Item item) {
+        UUID ownerId = item.getOwner().getId();
+        User owner = userService.findUser(ownerId);
+        item.setOwner(owner);
+        return itemService.addItem(item);
     }
 }
