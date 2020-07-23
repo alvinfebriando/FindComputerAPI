@@ -2,9 +2,13 @@ package com.alvin.compfest.user;
 
 import java.util.UUID;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
+
 public class User {
     private final UUID id;
     private final String name;
+    @JsonProperty(access = Access.WRITE_ONLY)
     private final String password;
     private final String email;
 
