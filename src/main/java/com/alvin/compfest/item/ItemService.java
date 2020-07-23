@@ -3,6 +3,9 @@ package com.alvin.compfest.item;
 import java.util.List;
 import java.util.UUID;
 
+import com.alvin.compfest.user.User;
+import com.alvin.compfest.user.UserService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -10,14 +13,22 @@ import org.springframework.stereotype.Service;
 @Service
 public class ItemService {
     private final ItemDAO itemDAO;
+    private final UserService userService;
 
     @Autowired
-    public ItemService(@Qualifier("arrayListItemDAO") ItemDAO itemDAO) {
+    public ItemService(@Qualifier("arrayListItemDAO") ItemDAO itemDAO, UserService userService) {
         this.itemDAO = itemDAO;
+        this.userService = userService;
     }
 
     public Item addItem(Item item) {
         return itemDAO.insertItem(item);
+    }
+
+    public void embedUser(Item item) {
+        UUID ownerId = item.getOwner().getId();
+        User owner = userService.findUser(ownerId);
+        item.setOwner(owner);
     }
 
     public void removeItem(UUID id) {
