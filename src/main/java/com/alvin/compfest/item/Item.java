@@ -6,11 +6,11 @@ import com.alvin.compfest.user.User;
 
 public class Item {
     private final UUID id;
-    private final String name;
-    private final String description;
-    private final Category category;
-    private final int price;
-    private final User owner;
+    private String name;
+    private String description;
+    private Category category;
+    private int price;
+    private User owner;
 
     public Item(UUID id, String name, String description, Category category, int price, User owner) {
         this.id = id;
@@ -29,19 +29,40 @@ public class Item {
         return name;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public String getDescription() {
         return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public Category getCategory() {
         return category;
     }
 
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
     public int getPrice() {
         return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
     }
 
     public User getOwner() {
         return owner;
     }
+
+    public void setOwner(User owner) {
+        this.owner = owner;
+    }
+
 }
