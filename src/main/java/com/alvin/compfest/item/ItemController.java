@@ -7,6 +7,7 @@ import java.util.UUID;
 import com.alvin.compfest.user.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -50,4 +51,14 @@ public class ItemController {
         return itemService.addItem(item);
     }
 
+    @PutMapping("{id}")
+    public void updateItem(@PathVariable("id") UUID id, @RequestBody Item item) {
+        itemService.embedUser(item);
+        itemService.updateItem(id, item);
+    }
+
+    @DeleteMapping("{id}")
+    public void deleteItem(@PathVariable("id") UUID id) {
+        itemService.removeItem(id);
+    }
 }
