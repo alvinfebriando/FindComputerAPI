@@ -12,7 +12,8 @@ public class Item {
     private int price;
     private User owner;
 
-    public Item(UUID id, String name, String description, Category category, int price, User owner) {
+    public Item(UUID id, String name, String description, Category category, int price,
+            User owner) {
         this.id = id;
         this.name = name;
         this.description = description;

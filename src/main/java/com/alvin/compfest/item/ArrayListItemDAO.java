@@ -13,8 +13,8 @@ public class ArrayListItemDAO implements ItemDAO {
 
     @Override
     public Item insertItem(UUID id, Item newItem) {
-        Item i = new Item(id, newItem.getName(), newItem.getDescription(), newItem.getCategory(), newItem.getPrice(),
-                newItem.getOwner());
+        Item i = new Item(id, newItem.getName(), newItem.getDescription(), newItem.getCategory(),
+                newItem.getPrice(), newItem.getOwner());
         DB.add(i);
         return i;
     }
@@ -37,12 +37,14 @@ public class ArrayListItemDAO implements ItemDAO {
 
     @Override
     public List<Item> getItems(UUID owner) {
-        return DB.stream().filter(item -> item.getOwner().getId().equals(owner)).collect(Collectors.toList());
+        return DB.stream().filter(item -> item.getOwner().getId().equals(owner))
+                .collect(Collectors.toList());
     }
 
     @Override
     public List<Item> getItems(Category category) {
-        return DB.stream().filter(item -> item.getCategory().equals(category)).collect(Collectors.toList());
+        return DB.stream().filter(item -> item.getCategory().equals(category))
+                .collect(Collectors.toList());
     }
 
 }

@@ -18,7 +18,8 @@ public class UserService implements UserDetailsService {
     private final BCryptPasswordEncoder bcryptPasswordEncoder;
 
     @Autowired
-    public UserService(@Qualifier("arrayListUserDAO") UserDAO userDAO, BCryptPasswordEncoder bcryptPasswordEncoder) {
+    public UserService(@Qualifier("arrayListUserDAO") UserDAO userDAO,
+            BCryptPasswordEncoder bcryptPasswordEncoder) {
         this.userDAO = userDAO;
         this.bcryptPasswordEncoder = bcryptPasswordEncoder;
     }
@@ -38,8 +39,8 @@ public class UserService implements UserDetailsService {
         if (user == null) {
             throw new UsernameNotFoundException(username);
         }
-        return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(),
-                emptyList());
+        return new org.springframework.security.core.userdetails.User(user.getUsername(),
+                user.getPassword(), emptyList());
     }
 
 }

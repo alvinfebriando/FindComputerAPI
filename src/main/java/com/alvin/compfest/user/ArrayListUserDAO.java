@@ -12,7 +12,8 @@ public class ArrayListUserDAO implements UserDAO {
 
     @Override
     public User insertUser(UUID id, User user) {
-        User u = new User(id, user.getName(), user.getUsername(), user.getPassword(), user.getEmail());
+        User u = new User(id, user.getName(), user.getUsername(), user.getPassword(),
+                user.getEmail());
         DB.add(u);
         return u;
     }
@@ -24,6 +25,7 @@ public class ArrayListUserDAO implements UserDAO {
 
     @Override
     public User getUser(String username) {
-        return DB.stream().filter(user -> username.equals(user.getUsername())).findAny().orElse(null);
+        return DB.stream().filter(user -> username.equals(user.getUsername())).findAny()
+                .orElse(null);
     }
 }
