@@ -11,4 +11,6 @@ public interface UserDAO {
     }
 
     User getUser(UUID id);
+
+    User getUser(String email);
 }

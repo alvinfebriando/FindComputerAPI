@@ -8,15 +8,21 @@ import com.fasterxml.jackson.annotation.JsonProperty.Access;
 public class User {
     private final UUID id;
     private String name;
+    private String username;
     @JsonProperty(access = Access.WRITE_ONLY)
     private String password;
     private String email;
 
-    public User(UUID id, String name, String password, String email) {
+    public User(UUID id, String name, String username, String password, String email) {
         this.id = id;
         this.name = name;
+        this.username = username;
         this.password = password;
         this.email = email;
+    }
+
+    public User() {
+        this.id = UUID.randomUUID();
     }
 
     public UUID getId() {
@@ -29,6 +35,14 @@ public class User {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPassword() {
