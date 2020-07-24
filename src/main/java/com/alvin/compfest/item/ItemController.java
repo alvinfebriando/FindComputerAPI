@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
+import com.alvin.compfest.exception.ResourceNotFoundException;
 import com.alvin.compfest.user.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,7 +43,11 @@ public class ItemController {
 
     @GetMapping(path = "{id}")
     public Item getItem(@PathVariable("id") UUID id) {
-        return itemService.getItem(id);
+        Item item = itemService.getItem(id);
+        if (item == null) {
+            throw new ResourceNotFoundException("item");
+        }
+        return item;
     }
 
     @PostMapping

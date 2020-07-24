@@ -2,6 +2,8 @@ package com.alvin.compfest.user;
 
 import java.util.UUID;
 
+import com.alvin.compfest.exception.ResourceNotFoundException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -26,7 +28,11 @@ public class UserController {
     }
 
     @GetMapping(path = "{id}")
-    public User getUser(@PathVariable("id") UUID id) {
-        return this.userService.findUser(id);
+    public User getUser(@PathVariable("id") UUID id) throws Exception {
+        User user = this.userService.findUser(id);
+        if (user == null) {
+            throw new ResourceNotFoundException("User");
+        }
+        return user;
     }
 }
