@@ -26,8 +26,8 @@ public class ItemService {
     }
 
     public void embedUser(Item item) {
-        UUID ownerId = item.getOwner().getId();
-        User owner = userService.findUser(ownerId);
+        String name = item.getOwner().getUsername();
+        User owner = userService.findUser(name);
         item.setOwner(owner);
     }
 
