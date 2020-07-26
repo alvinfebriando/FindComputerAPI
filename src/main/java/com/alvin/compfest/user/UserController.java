@@ -1,7 +1,7 @@
 package com.alvin.compfest.user;
 
 import java.util.UUID;
-
+import com.alvin.compfest.exception.ResourceAlreadyExistsException;
 import com.alvin.compfest.exception.ResourceNotFoundException;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +24,10 @@ public class UserController {
 
     @PostMapping
     public User register(@RequestBody User user) {
+        User u = this.userService.findUser(user.getUsername());
+        if (u != null) {
+            throw new ResourceAlreadyExistsException("User");
+        }
         return userService.createUser(user);
     }
 

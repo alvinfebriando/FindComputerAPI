@@ -12,5 +12,5 @@ public interface UserDAO {
 
     User getUser(UUID id);
 
-    User getUser(String email);
+    User getUser(String username);
 }

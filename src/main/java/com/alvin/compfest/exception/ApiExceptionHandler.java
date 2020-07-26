@@ -9,8 +9,13 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 public class ApiExceptionHandler {
     @ExceptionHandler(value = {ResourceNotFoundException.class})
     public ResponseEntity<Object> handleResourceNotFound(ResourceNotFoundException ex) {
-        HttpStatus notFound = HttpStatus.NOT_FOUND;
         ApiException apiException = new ApiException(ex.getMessage() + " not found", 404);
-        return new ResponseEntity<>(apiException, notFound);
+        return new ResponseEntity<>(apiException, HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(value = {ResourceAlreadyExistsException.class})
+    public ResponseEntity<Object> handleResourceAlreadyExisted(ResourceAlreadyExistsException ex) {
+        ApiException apiException = new ApiException(ex.getMessage() + " already exists", 409);
+        return new ResponseEntity<>(apiException, HttpStatus.CONFLICT);
     }
 }
