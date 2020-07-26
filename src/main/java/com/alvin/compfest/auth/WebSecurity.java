@@ -1,8 +1,7 @@
 package com.alvin.compfest.auth;
 
-import com.alvin.compfest.user.UserService;
 import static com.alvin.compfest.auth.SecurityConstants.SIGN_UP_URL;
-
+import com.alvin.compfest.user.UserService;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -24,9 +23,9 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.csrf().disable().authorizeRequests().antMatchers(HttpMethod.POST, SIGN_UP_URL)
-                .permitAll().anyRequest().authenticated().and()
-                .addFilter(new JwtAuthenticationFilter(authenticationManager()))
+        http.cors().and().csrf().disable().authorizeRequests()
+                .antMatchers(HttpMethod.POST, SIGN_UP_URL).permitAll().anyRequest().authenticated()
+                .and().addFilter(new JwtAuthenticationFilter(authenticationManager()))
                 .addFilter(new JwtAuthorizationFilter(authenticationManager())).sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
     }
