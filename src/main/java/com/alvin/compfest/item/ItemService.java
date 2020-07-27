@@ -82,4 +82,11 @@ public class ItemService {
     public Item getItem(UUID id) {
         return itemDAO.getItem(id);
     }
+
+    public Item buy(UUID id, String username) {
+        Item i = itemDAO.getItem(id);
+        User u = userService.findUser(username);
+        i.setOwner(u);
+        return i;
+    }
 }

@@ -67,4 +67,9 @@ public class ItemController {
     public void deleteItem(@PathVariable("id") UUID id) {
         itemService.removeItem(id);
     }
+
+    @PostMapping("{id}/{username}")
+    public Item buyItem(@PathVariable("id") UUID id, @PathVariable("username") String username) {
+        return itemService.buy(id, username);
+    }
 }
