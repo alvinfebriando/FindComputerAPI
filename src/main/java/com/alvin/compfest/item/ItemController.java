@@ -57,9 +57,10 @@ public class ItemController {
     }
 
     @PutMapping("{id}")
-    public void updateItem(@PathVariable("id") UUID id, @RequestBody Item item) {
+    public Item updateItem(@PathVariable("id") UUID id, @RequestBody Item item) {
         itemService.embedUser(item);
         itemService.updateItem(id, item);
+        return itemService.getItem(id);
     }
 
     @DeleteMapping("{id}")
