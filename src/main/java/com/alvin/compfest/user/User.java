@@ -1,20 +1,16 @@
 package com.alvin.compfest.user;
 
-import java.util.UUID;
-
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
 public class User {
-    private final UUID id;
     private String name;
     private String username;
     @JsonProperty(access = Access.WRITE_ONLY)
     private String password;
     private String email;
 
-    public User(UUID id, String name, String username, String password, String email) {
-        this.id = id;
+    public User(String name, String username, String password, String email) {
         this.name = name;
         this.username = username;
         this.password = password;
@@ -22,11 +18,7 @@ public class User {
     }
 
     public User() {
-        this.id = UUID.randomUUID();
-    }
 
-    public UUID getId() {
-        return id;
     }
 
     public String getName() {

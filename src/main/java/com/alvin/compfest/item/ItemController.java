@@ -30,9 +30,9 @@ public class ItemController {
 
     @GetMapping
     public List<Item> getItems(@RequestParam Map<String, String> params) {
-        if (params.containsKey("ownerId")) {
-            UUID ownerId = UUID.fromString(params.get("ownerId"));
-            return itemService.searchItemsByOwner(ownerId);
+        if (params.containsKey("username")) {
+            String username = params.get("username");
+            return itemService.searchItemsByOwner(username);
         } else if (params.containsKey("category")) {
             Category category = Category.valueOf(params.get("category"));
             return itemService.searchItemsByCategory(category);

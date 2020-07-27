@@ -71,8 +71,8 @@ public class ItemService {
         return itemDAO.getItems(category);
     }
 
-    public List<Item> searchItemsByOwner(UUID ownerId) {
-        return itemDAO.getItems(ownerId);
+    public List<Item> searchItemsByOwner(String username) {
+        return itemDAO.getItems(username);
     }
 
     public Item getItem(UUID id) {
