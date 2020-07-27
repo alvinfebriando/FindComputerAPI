@@ -40,6 +40,10 @@ public class UserService implements UserDetailsService {
         return this.userDAO.getUser(username);
     }
 
+    public void updateUser(String username, User user) {
+        userDAO.updateUser(username, user);
+    }
+
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user = this.userDAO.getUser(username);

@@ -28,4 +28,10 @@ public class ArrayListUserDAO implements UserDAO {
         return DB.stream().filter(user -> username.equals(user.getUsername())).findAny()
                 .orElse(null);
     }
+
+    @Override
+    public void updateUser(String username, User user) {
+        DB.removeIf(u -> u.getUsername().equals(username));
+        DB.add(user);
+    }
 }
