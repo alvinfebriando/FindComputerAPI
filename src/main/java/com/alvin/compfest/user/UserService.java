@@ -22,6 +22,9 @@ public class UserService implements UserDetailsService {
             BCryptPasswordEncoder bcryptPasswordEncoder) {
         this.userDAO = userDAO;
         this.bcryptPasswordEncoder = bcryptPasswordEncoder;
+
+        createUser(new User(UUID.randomUUID(), "Test", "test", "test123", "test@gmail.com"));
+        createUser(new User(UUID.randomUUID(), "John Doe", "john", "john123", "john@gmail.com"));
     }
 
     public User createUser(User user) {
