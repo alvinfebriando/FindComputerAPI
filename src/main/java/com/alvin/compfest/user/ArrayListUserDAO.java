@@ -3,7 +3,6 @@ package com.alvin.compfest.user;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
-
 import org.springframework.stereotype.Repository;
 
 @Repository("arrayListUserDAO")
@@ -30,8 +29,7 @@ public class ArrayListUserDAO implements UserDAO {
     }
 
     @Override
-    public void updateUser(String username, User user) {
-        DB.removeIf(u -> u.getUsername().equals(username));
-        DB.add(user);
+    public void deleteUser(String username) {
+        DB.removeIf(u -> u.getUsername().equals((username)));
     }
 }

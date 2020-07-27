@@ -41,7 +41,8 @@ public class UserService implements UserDetailsService {
     }
 
     public void updateUser(String username, User user) {
-        userDAO.updateUser(username, user);
+        userDAO.deleteUser(username);
+        createUser(user);
     }
 
     @Override
