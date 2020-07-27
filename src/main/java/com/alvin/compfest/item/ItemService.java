@@ -67,6 +67,10 @@ public class ItemService {
         itemDAO.updateItem(id, item);
     }
 
+    public List<Item> getAllItems() {
+        return itemDAO.getItems();
+    }
+
     public List<Item> searchItemsByCategory(Category category) {
         return itemDAO.getItems(category);
     }

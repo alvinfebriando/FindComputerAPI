@@ -17,6 +17,8 @@ public interface ItemDAO {
 
     Item getItem(UUID id);
 
+    List<Item> getItems();
+
     List<Item> getItems(String username);
 
     List<Item> getItems(Category category);

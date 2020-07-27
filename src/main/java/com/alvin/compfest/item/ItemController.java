@@ -37,7 +37,7 @@ public class ItemController {
             Category category = Category.valueOf(params.get("category"));
             return itemService.searchItemsByCategory(category);
         } else {
-            return null;
+            return itemService.getAllItems();
         }
     }
 
